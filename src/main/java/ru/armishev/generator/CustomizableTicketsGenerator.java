@@ -9,13 +9,13 @@ import ru.armishev.Ticket;
 import java.util.Iterator;
 
 @Service("Generator")
-public class СustomizableTicketsGenerator implements Iterator<Lucky> {
+public class CustomizableTicketsGenerator implements Iterator<Lucky> {
     private int MAX_COUNT;
     private int count_numbers;
     private int current = 0;
 
     @Autowired
-    public СustomizableTicketsGenerator(@Qualifier("CountNumbers")int count_numbers) {
+    public CustomizableTicketsGenerator(@Qualifier("CountNumbers")int count_numbers) {
         this.count_numbers = count_numbers;
         this.MAX_COUNT = (int)Math.pow(10,count_numbers);
     }
