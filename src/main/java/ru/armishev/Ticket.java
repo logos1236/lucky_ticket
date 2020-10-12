@@ -12,14 +12,10 @@ public class Ticket implements Lucky {
     public static int[] getSupplementedTicketNumber(long number, int count_numbers) {
         char[] number_arr = String.valueOf(number).toCharArray();
         int[] result = new int[count_numbers];
+        int fill_start_index = count_numbers - number_arr.length;
 
-        for (int i = 0; i < count_numbers; i++) {
-            int current_i = number_arr.length - count_numbers + i;
-            if (current_i >= 0) {
-                result[i] = Character.getNumericValue(number_arr[current_i]);
-            } else {
-                result[i] = 0;
-            }
+        for (int i = 0; i < number_arr.length; i++) {
+            result[fill_start_index+i] = Character.getNumericValue(number_arr[i]);
         }
 
         return result;
