@@ -7,8 +7,8 @@ import java.util.function.Predicate;
 
 @Configuration
 public class AppConfig {
-    @Bean("CountNumbersInTicket")
-    public static Integer getCountNumbersInTicket() {
+    @Bean("CountDigitsInTicket")
+    public static Integer getCountDigitsInTicket() {
         return 6;
     }
 
