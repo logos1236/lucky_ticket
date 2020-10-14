@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 public class Main {
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext("ru.armishev");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("ru.armishev");
         Supplier lucky_count = context.getBean("AppLuckyCount", Supplier.class);
 
         System.out.println(lucky_count.get());

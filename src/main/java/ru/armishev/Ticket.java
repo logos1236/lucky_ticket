@@ -9,6 +9,10 @@ public class Ticket implements Lucky {
         this.number = number;
     }
 
+    public Ticket(long number, int count_numbers) {
+        this.number = getSupplementedTicketNumber(number, count_numbers);
+    }
+
     public static int[] getSupplementedTicketNumber(long number, int count_numbers) {
         char[] number_arr = String.valueOf(number).toCharArray();
         int[] result = new int[count_numbers];

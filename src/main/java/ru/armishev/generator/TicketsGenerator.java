@@ -17,7 +17,7 @@ public class TicketsGenerator implements Iterator<Lucky> {
 
     @Override
     public Lucky next() {
-        Lucky result = new Ticket(Ticket.getSupplementedTicketNumber(current, 6));
+        Lucky result = new Ticket(current, 6);
         current++;
 
         return result;
