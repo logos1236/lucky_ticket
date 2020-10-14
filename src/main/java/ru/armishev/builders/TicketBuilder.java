@@ -18,7 +18,7 @@ public class TicketBuilder implements ITicketBuilder {
 
     @Override
     public Ticket build() {
-        if (is_used == true) {
+        if (is_used) {
             throw new IllegalArgumentException("Билет уже использовался");
         }
 
