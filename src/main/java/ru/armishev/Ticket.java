@@ -10,10 +10,26 @@ public class Ticket implements Lucky {
     }
 
     public Ticket(long number, int count_numbers) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Передано отрицательное число в качестве номера");
+        }
+
+        if (count_numbers < 2) {
+            throw new IllegalArgumentException("Передано неправильное число в качестве количества цифр в билете");
+        }
+
         this.number = getSupplementedTicketNumber(number, count_numbers);
     }
 
     public static int[] getSupplementedTicketNumber(long number, int count_numbers) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Передано отрицательное число в качестве номера");
+        }
+
+        if (count_numbers < 2) {
+            throw new IllegalArgumentException("Передано неправильное число в качестве количества цифр в билете");
+        }
+
         char[] number_arr = String.valueOf(number).toCharArray();
         int[] result = new int[count_numbers];
         int fill_start_index = count_numbers - number_arr.length;
@@ -60,5 +76,18 @@ public class Ticket implements Lucky {
     @Override
     public String toString() {
         return Arrays.toString(number);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ticket ticket = (Ticket) o;
+        return Arrays.equals(number, ticket.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(number);
     }
 }

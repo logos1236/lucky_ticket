@@ -13,8 +13,8 @@ public class TicketBuilder implements ITicketBuilder {
 
     /*
     Признак того, что билет уже использовался
-     */
-    private Boolean is_used;
+    */
+    private Boolean is_used = false;
 
     @Override
     public Ticket build() {
@@ -32,8 +32,8 @@ public class TicketBuilder implements ITicketBuilder {
         return this;
     }
 
-    @PostConstruct
-    private void afterInit() {
-        is_used = false;
-    }
+    //@PostConstruct
+    //private void afterInit() {
+    //    is_used = false;
+    //}
 }
