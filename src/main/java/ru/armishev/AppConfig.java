@@ -15,7 +15,7 @@ public class AppConfig {
     @Bean("LuckyMethod")
     public static Predicate<Lucky> getLuckyMethod() {
         Predicate<Lucky> method = (ticket) -> {
-            return ticket.isLucky();
+            return ticket.isThirdLucky();
         };
 
         return method;

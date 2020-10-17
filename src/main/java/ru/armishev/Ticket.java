@@ -51,6 +51,13 @@ public class Ticket implements Lucky {
     }
 
     @Override
+    public boolean isThirdLucky() {
+        int summ_digits_in_number = Arrays.stream(this.number).sum();
+
+        return this.isLucky() && (summ_digits_in_number%3==0) ? true : false;
+    }
+
+    @Override
     public String toString() {
         return Arrays.toString(number);
     }
