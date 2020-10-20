@@ -17,12 +17,13 @@ public class CustomizableTicketsGenerator implements Iterator<Lucky>, Applicatio
     private int MAX_COUNT;
     private int count_numbers;
     private int current = 0;
+
     private ApplicationContext context;
 
     @Autowired
-    public CustomizableTicketsGenerator(@Qualifier("CountDigitsInTicket")int count_digits) throws Exception {
+    public CustomizableTicketsGenerator(@Qualifier("CountDigitsInTicket")int count_digits) throws IllegalArgumentException {
         if (count_digits < 2) {
-            throw new Exception("Нужны минимум 2 цифры");
+            throw new IllegalArgumentException("Нужны минимум 2 цифры");
         }
 
         this.count_numbers = count_digits;
