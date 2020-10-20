@@ -63,7 +63,7 @@ public class TestTicket {
     Проверка метода приведения номера билета к массиву
      */
     @Test
-    public void supplementedTicketNumberTest() {
+    public void supplementedTicketNumberNullTest() {
         int[] number = Ticket.getSupplementedTicketNumber(123,6);
 
         assertNotNull(number);
@@ -74,9 +74,10 @@ public class TestTicket {
      */
     @Test
     public void supplementedTicketNumberLengthTest() {
-        int[] number = Ticket.getSupplementedTicketNumber(123,6);
+        int count_numbers = 6;
+        int[] number = Ticket.getSupplementedTicketNumber(123,count_numbers);
 
-        assertEquals(number.length, 6);
+        assertEquals(number.length, count_numbers);
     }
 
     /*
