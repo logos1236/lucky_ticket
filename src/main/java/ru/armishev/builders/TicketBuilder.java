@@ -4,8 +4,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ru.armishev.Ticket;
 
-import javax.annotation.PostConstruct;
-
 @Service("TicketBuilder")
 @Scope("prototype")
 public class TicketBuilder implements ITicketBuilder {
@@ -31,9 +29,4 @@ public class TicketBuilder implements ITicketBuilder {
         this.ticket_number = Ticket.getSupplementedTicketNumber(number, count_numbers);
         return this;
     }
-
-    //@PostConstruct
-    //private void afterInit() {
-    //    is_used = false;
-    //}
 }

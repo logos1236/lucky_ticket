@@ -48,4 +48,26 @@ public class TestBuilder {
             assertNotEquals(e.getMessage(),"");
         }
     }
+
+    /*
+    Повторное использование лбъекта билдера
+     */
+    @Test
+    public void reuseTicketBuilder() {
+        int number = 6;
+        int count_numbers = 6;
+
+        TicketBuilder tb = new TicketBuilder();
+        tb.setTicketInfo(number,count_numbers);
+
+        try {
+            Ticket t1 = tb.build();
+            Ticket t2 = tb.build();
+
+            assertFalse(true);
+        } catch (Exception e) {
+            assertEquals(e.getClass(), IllegalArgumentException.class);
+            assertNotEquals(e.getMessage(),"");
+        }
+    }
 }

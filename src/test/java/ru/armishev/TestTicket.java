@@ -124,4 +124,32 @@ public class TestTicket {
         assertFalse(test.isThirdLucky());
     }
 
+    /*
+    Проверка приведения к строке
+     */
+    @Test
+    public void toStringTest() {
+        Ticket test = new Ticket(3003, 6);
+        assertNotNull(test.toString());
+    }
+
+    /*
+    Проверка хеширования
+     */
+    @Test
+    public void hashCodeTest() {
+        Ticket test = new Ticket(3003, 6);
+        Ticket test2 = new Ticket(3003, 6);
+
+        assertEquals(test.hashCode(), test2.hashCode());
+    }
+
+    @Test
+    public void hashCodeNegativeTest() {
+        Ticket test = new Ticket(3003, 6);
+        Ticket test2 = new Ticket(3000, 6);
+
+        assertNotEquals(test.hashCode(), test2.hashCode());
+    }
+
 }
