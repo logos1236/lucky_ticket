@@ -1,9 +1,9 @@
 package ru.armishev;
 
 public interface Lucky {
-    public boolean isLucky();
+    boolean isLucky();
 
-    public boolean isEvenLucky();
+    boolean isEvenLucky();
 
-    public boolean isThirdLucky();
+    boolean isThirdLucky();
 }

@@ -7,15 +7,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 import ru.armishev.Lucky;
-import ru.armishev.Ticket;
 import ru.armishev.builders.TicketBuilder;
 
 import java.util.Iterator;
 
 @Service("Generator")
 public class CustomizableTicketsGenerator implements Iterator<Lucky>, ApplicationContextAware {
-    private int MAX_COUNT;
-    private int count_numbers;
+    private final int MAX_COUNT;
+    private final int count_numbers;
     private int current = 0;
 
     private ApplicationContext context;
@@ -44,6 +43,7 @@ public class CustomizableTicketsGenerator implements Iterator<Lucky>, Applicatio
         return result;
     }
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         context = applicationContext;

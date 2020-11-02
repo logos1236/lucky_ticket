@@ -42,7 +42,7 @@ public class TestBuilder {
             tb.setTicketInfo(number,count_numbers);
             tb.build();
 
-            assertFalse(true);
+            fail();
         } catch (RuntimeException e) {
             assertEquals(e.getClass(), IllegalArgumentException.class);
             assertNotEquals(e.getMessage(),"");
@@ -61,10 +61,10 @@ public class TestBuilder {
         tb.setTicketInfo(number,count_numbers);
 
         try {
-            Ticket t1 = tb.build();
-            Ticket t2 = tb.build();
+            tb.build();
+            tb.build();
 
-            assertFalse(true);
+            fail();
         } catch (Exception e) {
             assertEquals(e.getClass(), IllegalArgumentException.class);
             assertNotEquals(e.getMessage(),"");

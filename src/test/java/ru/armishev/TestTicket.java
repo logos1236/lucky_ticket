@@ -20,9 +20,9 @@ public class TestTicket {
     @Test
     public void isTicketLuckyTest() {
         try {
-            Lucky test = new Ticket(6, 6);
+            new Ticket(6, 6);
         } catch (ClassCastException e) {
-            assertFalse(true);
+            fail();
         }
     }
 
@@ -34,9 +34,9 @@ public class TestTicket {
     @Test
     public void ticketConstructorNegativeNumberTest() {
         try {
-            Ticket test = new Ticket(-6, 6);
-            Ticket test2 = new Ticket(6, -6);
-            assertFalse(true);
+            new Ticket(-6, 6);
+            new Ticket(6, -6);
+            fail();
         } catch (RuntimeException e) {
             assertEquals(e.getClass(), IllegalArgumentException.class);
             assertNotEquals(e.getMessage(),"");
@@ -52,7 +52,7 @@ public class TestTicket {
         try {
             Ticket.getSupplementedTicketNumber(-6, 6);
             Ticket.getSupplementedTicketNumber(6, -6);
-            assertFalse(true);
+            fail();
         } catch (RuntimeException e) {
             assertEquals(e.getClass(), IllegalArgumentException.class);
             assertNotEquals(e.getMessage(),"");

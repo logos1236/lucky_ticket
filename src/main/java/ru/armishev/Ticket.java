@@ -3,7 +3,7 @@ package ru.armishev;
 import java.util.Arrays;
 
 public class Ticket implements Lucky {
-    private int[] number;
+    private final int[] number;
 
     public Ticket(int[] number) {
         this.number = number;
@@ -41,11 +41,12 @@ public class Ticket implements Lucky {
         return result;
     }
 
+    @SuppressWarnings("IntegerDivisionInFloatingPointContext")
     @Override
     public boolean isLucky() {
-        int right_summ = 0;
-        int left_summ = 0;
-        int middle_number_ticket = 0;
+        int right_sum = 0;
+        int left_sum = 0;
+        int middle_number_ticket;
 
         if (number.length%2==0) {
             middle_number_ticket = (int)Math.ceil(number.length/2)-1;
@@ -54,23 +55,23 @@ public class Ticket implements Lucky {
         }
 
         for(int i = 0; i <= middle_number_ticket; i++) {
-            left_summ += number[i];
-            right_summ += number[1+middle_number_ticket+i];
+            left_sum += number[i];
+            right_sum += number[1+middle_number_ticket+i];
         }
 
-        return (left_summ == right_summ) ? true: false;
+        return left_sum == right_sum;
     }
 
     @Override
     public boolean isEvenLucky() {
-        return this.isLucky() && (this.number[this.number.length-1]%2==0) ? true : false;
+        return this.isLucky() && (this.number[this.number.length - 1] % 2 == 0);
     }
 
     @Override
     public boolean isThirdLucky() {
-        int summ_digits_in_number = Arrays.stream(this.number).sum();
+        int sum_digits_in_number = Arrays.stream(this.number).sum();
 
-        return this.isLucky() && (summ_digits_in_number%3==0) ? true : false;
+        return this.isLucky() && (sum_digits_in_number % 3 == 0);
     }
 
     @Override
