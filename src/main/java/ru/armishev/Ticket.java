@@ -9,33 +9,33 @@ public class Ticket implements Lucky {
         this.number = number;
     }
 
-    public Ticket(long number, int count_numbers) {
+    public Ticket(long number, int countNumbers) {
         if (number < 0) {
             throw new IllegalArgumentException("Передано отрицательное число в качестве номера");
         }
 
-        if (count_numbers < 2) {
+        if (countNumbers < 2) {
             throw new IllegalArgumentException("Передано неправильное число в качестве количества цифр в билете");
         }
 
-        this.number = getSupplementedTicketNumber(number, count_numbers);
+        this.number = getSupplementedTicketNumber(number, countNumbers);
     }
 
-    public static int[] getSupplementedTicketNumber(long number, int count_numbers) {
+    public static int[] getSupplementedTicketNumber(long number, int countNumbers) {
         if (number < 0) {
             throw new IllegalArgumentException("Передано отрицательное число в качестве номера");
         }
 
-        if (count_numbers < 2) {
+        if (countNumbers < 2) {
             throw new IllegalArgumentException("Передано неправильное число в качестве количества цифр в билете");
         }
 
-        char[] number_arr = String.valueOf(number).toCharArray();
-        int[] result = new int[count_numbers];
-        int fill_start_index = count_numbers - number_arr.length;
+        char[] numberArr = String.valueOf(number).toCharArray();
+        int[] result = new int[countNumbers];
+        int fillStartIndex = countNumbers - numberArr.length;
 
-        for (int i = 0; i < number_arr.length; i++) {
-            result[fill_start_index+i] = Character.getNumericValue(number_arr[i]);
+        for (int i = 0; i < numberArr.length; i++) {
+            result[fillStartIndex+i] = Character.getNumericValue(numberArr[i]);
         }
 
         return result;
@@ -44,22 +44,22 @@ public class Ticket implements Lucky {
     @SuppressWarnings("IntegerDivisionInFloatingPointContext")
     @Override
     public boolean isLucky() {
-        int right_sum = 0;
-        int left_sum = 0;
-        int middle_number_ticket;
+        int rightSum = 0;
+        int leftSum = 0;
+        int middleNumberTicket;
 
         if (number.length%2==0) {
-            middle_number_ticket = (int)Math.ceil(number.length/2)-1;
+            middleNumberTicket = number.length/2-1;
         } else {
-            middle_number_ticket = (int)Math.ceil(number.length/2);
+            middleNumberTicket = (number.length+1)/2;
         }
 
-        for(int i = 0; i <= middle_number_ticket; i++) {
-            left_sum += number[i];
-            right_sum += number[1+middle_number_ticket+i];
+        for(int i = 0; i <= middleNumberTicket; i++) {
+            leftSum += number[i];
+            rightSum += number[1+middleNumberTicket+i];
         }
 
-        return left_sum == right_sum;
+        return leftSum == rightSum;
     }
 
     @Override
@@ -69,9 +69,9 @@ public class Ticket implements Lucky {
 
     @Override
     public boolean isThirdLucky() {
-        int sum_digits_in_number = Arrays.stream(this.number).sum();
+        int sumDigitsInNumber = Arrays.stream(this.number).sum();
 
-        return this.isLucky() && (sum_digits_in_number % 3 == 0);
+        return this.isLucky() && (sumDigitsInNumber % 3 == 0);
     }
 
     @Override

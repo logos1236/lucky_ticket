@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
+import java.util.function.LongSupplier;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 @Service("AppLuckyCount")
-public class AppLuckyCount implements Supplier<Long> {
+public class AppLuckyCount implements LongSupplier {
     @Autowired
     @Qualifier("Generator")
     Iterator<Lucky> iterator;
@@ -19,17 +19,17 @@ public class AppLuckyCount implements Supplier<Long> {
     Predicate<Lucky> method;
 
     @Override
-    public Long get() {
-        long count_luck_tickets = 0;
+    public long getAsLong() {
+        long countLuckTickets = 0;
 
         while (iterator.hasNext()) {
             Lucky t = iterator.next();
             if (method.test(t)) {
                 System.out.println(t);
-                count_luck_tickets++;
+                countLuckTickets++;
             }
         }
 
-        return count_luck_tickets;
+        return countLuckTickets;
     }
 }

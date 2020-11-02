@@ -7,26 +7,26 @@ import ru.armishev.Ticket;
 @Service("TicketBuilder")
 @Scope("prototype")
 public class TicketBuilder implements ITicketBuilder {
-    private int[] ticket_number;
+    private int[] ticketNumber;
 
     /*
     Признак того, что билет уже использовался
     */
-    private Boolean is_used = false;
+    private Boolean isUsed = false;
 
     @Override
     public Ticket build() {
-        if (is_used) {
+        if (Boolean.TRUE.equals(isUsed)) {
             throw new IllegalArgumentException("Билет уже использовался");
         }
 
-        is_used = true;
-        return new Ticket(ticket_number);
+        isUsed = true;
+        return new Ticket(ticketNumber);
     }
 
     @Override
-    public TicketBuilder setTicketInfo(long number, int count_numbers) {
-        this.ticket_number = Ticket.getSupplementedTicketNumber(number, count_numbers);
+    public TicketBuilder setTicketInfo(long number, int countNumbers) {
+        this.ticketNumber = Ticket.getSupplementedTicketNumber(number, countNumbers);
         return this;
     }
 }

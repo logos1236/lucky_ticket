@@ -10,23 +10,24 @@ import ru.armishev.Lucky;
 import ru.armishev.builders.TicketBuilder;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 @Service("Generator")
 public class CustomizableTicketsGenerator implements Iterator<Lucky>, ApplicationContextAware {
     private final int MAX_COUNT;
-    private final int count_numbers;
+    private final int countNumbers;
     private int current = 0;
 
     private ApplicationContext context;
 
     @Autowired
-    public CustomizableTicketsGenerator(@Qualifier("CountDigitsInTicket")int count_digits) throws IllegalArgumentException {
-        if (count_digits < 2) {
+    public CustomizableTicketsGenerator(@Qualifier("CountDigitsInTicket")int countDigits) {
+        if (countDigits < 2) {
             throw new IllegalArgumentException("Нужны минимум 2 цифры");
         }
 
-        this.count_numbers = count_digits;
-        this.MAX_COUNT = (int)Math.pow(10,count_digits);
+        this.countNumbers = countDigits;
+        this.MAX_COUNT = (int)Math.pow(10,countDigits);
     }
 
     @Override
@@ -36,14 +37,16 @@ public class CustomizableTicketsGenerator implements Iterator<Lucky>, Applicatio
 
     @Override
     public Lucky next() {
-        //Lucky result = new Ticket(current, count_numbers);
-        Lucky result = context.getBean("TicketBuilder", TicketBuilder.class).setTicketInfo(current, count_numbers).build();
+        if (current >= MAX_COUNT) {
+            throw new NoSuchElementException("Нет такого элемента");
+        }
+
+        Lucky result = context.getBean("TicketBuilder", TicketBuilder.class).setTicketInfo(current, countNumbers).build();
         current++;
 
         return result;
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         context = applicationContext;

@@ -1,14 +1,13 @@
 package ru.armishev;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import java.util.function.Supplier;
+import java.util.function.LongSupplier;
 
 public class Main {
-    @SuppressWarnings("rawtypes")
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("ru.armishev");
-        Supplier lucky_count = context.getBean("AppLuckyCount", Supplier.class);
+        LongSupplier luckyCount = context.getBean("AppLuckyCount", LongSupplier.class);
 
-        System.out.println(lucky_count.get());
+        System.out.println(luckyCount.getAsLong());
     }
 }
