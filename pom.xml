@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.armishev</groupId>
-    <artifactId>lesson1</artifactId>
+    <artifactId>lucky_ticket</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
